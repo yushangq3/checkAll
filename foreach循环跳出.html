@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var a=[1,1,1,1,3,1,1,1,1,1,1,1,1,1,2];
+			var i=0
+			try{
+				a.forEach(function(a){
+					console.log(123)
+					if(a===3){
+//						throw new Error("StopIteration");
+						foreach.break=new Error("StopIteration");
+					}
+					
+				})
+			}catch(e){
+				//TODO handle the exception
+				console.log(e)
+			}
+			
+		</script>
+	</body>
+</html>

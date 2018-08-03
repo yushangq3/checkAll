@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 首先，浅拷贝和深拷贝都只针对于像Object， Array这样的复杂对象，
+			区别：浅拷贝只复制对象的第一层属性、深拷贝可以对对象的属性进行递归复制
+			*/
+//			const obj1 = {
+//			    name: 'mengft',
+//			    family: ['父亲', '母亲', '妹妹']
+//			}
+//			
+//			function shallowCopy (o) {
+//			    let object2 = {}
+//			    for(let i in o) {
+//			        if (o.hasOwnProperty(i)) {
+//			            object2[i] = o[i]
+//			        }
+//			    }
+//			    return object2
+//			}
+//			var obj2=shallowCopy(obj1);
+//			obj2.name='llili';
+//			var obj3=obj1;
+//			obj3.name='3333';
+//			console.dir(obj2,'obj2');
+//			console.dir(obj3,'obj3');
+//			console.dir(obj1,'obj1');
+			/*------------*/
+			const a1 = [{ foo: 1 }];
+			const a2 = [{ bar: 2 }];
+			
+			const a3 = a1.concat(a2);
+			const a4 = [...a1, ...a2];
+			console.log(a3,a4)
+			a1[0].foo=222
+		</script>
+	</body>
+</html>
