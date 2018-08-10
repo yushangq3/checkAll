@@ -1,0 +1,131 @@
+<html>
+	<head></head>
+	<body>
+		<h1>实现一个继承属性，必须有一个父类</h1>
+		<script>
+			
+			var Parent=function(name){
+				this.familyName="Guo";
+				this.name=name||'xiaofei'
+				console.log(this,'this-----------------')
+				this.sleep = function(){
+					console.log(this.familyName+this.name + '正在睡觉！');
+					return this.familyName+this.name + '正在睡觉！';
+				}
+			}
+			Parent.prototype.money=function(){
+				return this.money="13000";
+			}
+			Parent.prototype.age=55;
+			/*1. 原型链继承 */
+			/* 将父类的实例作为子类的原型 */
+			var Children1=function(){};
+			
+			Children1.prototype=new Parent('xiaoxiao');//
+			var children1=new Children1();
+			console.log(children1.familyName)
+			console.log(children1.name)
+			console.log(children1.sleep())
+			console.log(children1.money())
+			console.log(children1 instanceof Parent); // true
+			console.log(children1 instanceof Children1); // true
+			console.log(Children1.prototype.constructor)
+			console.log(children1,'children1','=========end==========');
+			/* 
+				实例即是父的实例也是子的实例
+			*/
+			
+			
+			/* 2构造继承 */
+			/* 使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型） */
+			var Children2=function (){
+				Parent.call(this,'xiaoli');
+				this.age='18'
+			}
+			var children2=new Children2();
+			console.log(children2.familyName)
+			console.log(children2.name)
+			console.log(children2.sleep())
+			console.log(children2 instanceof Parent); // false
+			console.log(children2 instanceof Children2); // true
+			console.log(Children2.prototype.constructor)
+			// console.log(children2.money()) TypeError 不能继承父类的原型
+			console.log(children2,'children2','=========end==========');
+			/* 
+				实例只是子的实例
+			*/
+			
+			
+			//TODO/* 修改 */
+			/* =================== */
+// 			var Children23=function (){
+// 				Parent.call(this,'xiaolili');
+// 				this.age='18'
+// 			}
+// 			Children23.prototype=Parent.prototype;
+// 			Children23.prototype.constructor=Children23;
+// 			console.log(Children23.prototype,'prototype=--==========	')
+// 			var children23=new Children23();
+// 			console.log(children23.familyName)
+// 			console.log(children23.name)
+// 			console.log(children23.sleep())
+// 			console.log(children23 instanceof Parent); // false
+// 			console.log(children23 instanceof Children23); // true
+// 			console.log(Children23.prototype.constructor)
+// 			console.log(children23.money())
+// 			console.log(children23,'children23','=========end==========');
+			
+			/* =================== */
+			/*  */
+			
+			/* 3.实例继承 */
+			/* 为父类实例添加新特性，作为子类实例返回 */
+			var Children3=function(){
+				var p=new Parent('xiaojuan');
+				return p;
+			}
+			var children3=new Children3();
+			console.log(children3.familyName)
+			console.log(children3.name)
+			console.log(children3.sleep())
+			console.log(children3 instanceof Parent); // true
+			console.log(children3 instanceof Children3); // false
+			console.log(children3.money()) 
+			console.log(Children3.prototype.constructor)
+			
+			console.log(children3,'children3','=========end==========');
+			/* 实例是父类的实例，不是子类的实例
+			不支持多继承 */
+			
+			
+			/* 4.组合继承 */
+			
+			var Children4=function(){
+				Parent.call(this,'xiaohei');
+				
+			}
+			Children4.prototype = new Parent();
+			// 感谢 @学无止境c 的提醒，组合继承也是需要修复构造函数指向的。
+			console.log(Children4.prototype.constructor)
+			Children4.prototype.constructor = Children4;
+			var children4 = new Children4();
+			// Test Code
+			console.log(children4.familyName)
+			console.log(children4.name)
+			console.log(children4.sleep())
+			console.log(children4 instanceof Parent); // true
+			console.log(children4 instanceof Children4); // true
+			console.log(children4.money()) 
+			console.log(Children4.prototype.constructor)
+			
+			console.log(children4,'Children4','=========end==========');
+			
+			console.log(Children4.hasOwnProperty('age'),'hasOwnProperty');
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

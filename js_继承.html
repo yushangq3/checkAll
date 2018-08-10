@@ -1,0 +1,56 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<script>
+			var Parent=function(name){
+				this.familyName="Guo";
+				this.name=name||'xiaofei'
+				console.log(this,'this-----------------')
+				this.sleep = function(){
+					console.log(this.familyName+this.name + '正在睡觉！');
+					return this.familyName+this.name + '正在睡觉！';
+				}
+			}
+			Parent.prototype.money=function(){
+				return this.money="13000";
+			}
+			//======================
+			var Children23=function (){
+				Parent.call(this,'xiaolili');
+				this.age='18'
+			}
+			;(function(){
+				// 创建一个没有实例方法的类
+				var Super = function(){};
+				Super.prototype = Parent.prototype;
+				//将实例作为子类的原型
+				Children23.prototype = new Super();
+			})();
+			Children23.prototype.constructor=Children23;
+			console.log(Children23.prototype,'prototype=--==========	')
+			var children23=new Children23();
+			console.log(children23)
+			
+			//======================
+			var Children26=function (){
+				Parent.call(this,'xiaolili');
+				this.age='18'
+			};
+			(function(){
+			  // 创建一个没有实例方法的类
+			  var Super = function(){};
+			  Super.prototype = Parent.prototype;
+			  //将实例作为子类的原型
+			  Children26.prototype = new Super();
+			})();
+			
+			Children26.prototype.constructor=Children26;
+			console.log(Children26.prototype,'prototype=--==========	')
+			var children26=new Children26();
+			console.log(children26)
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<script>
+			var first = { name: "Bob" };
+			var last = { lastName: "Smith" , name: "Bob2" };
+
+			var person = Object.assign(first, last);
+			console.log(person);// { name: "Bob2" , lastName: "Smith" };
+		</script>
+	</body>
+</html>

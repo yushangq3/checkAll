@@ -1,0 +1,42 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>指定创建一个对象的函数。</h1>
+		<h2></h2>
+		
+		
+		<script>
+			
+			// A constructor function.
+			function MyObj() {
+				this.number = 1;
+			}
+
+			var x = new String("Hi");
+			console.log(x.constructor);
+			console.log(MyObj.prototype.constructor)
+			
+			if (x.constructor == String)
+				document.write("Object is a String.");
+				document.write ("<br />");
+
+			var y = new MyObj;
+			console.log(y.__proto__);
+			console.log(y.constructor)
+			if (y.constructor == MyObj)
+				document.write("Object constructor is MyObj.");
+
+			// Output:
+			// Object is a String.
+			// Object constructor is MyObj.
+			
+			var b={
+				ba:'baa',
+				bb:'bba'
+			}
+			console.log(b.constructor);
+		</script>
+	</body>
+</html>

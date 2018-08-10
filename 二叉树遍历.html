@@ -1,0 +1,70 @@
+<html>
+	<head></head>
+	<body>
+		
+		<script>
+			
+			const preorder = ["A", "B", "D", "H", "I", "E", "C", "F", "G"];
+			const inorder = ["H", "D", "I", "B", "E", "A", "F", "C", "G"];
+			const result = getPostorder(preorder, inorder);
+			function getBinaryTree(pre,ino){
+				if(pre.length<=0||!pre){
+					return;
+				}
+				var root={
+					value:pre[0]
+				}
+				for(var i=0;i<ino.length;i++){
+					if(ino[i]===root.value && ino.length>1){
+						root.left=getBinaryTree(pre.slice(1,i+1),ino.slice(0,i));
+						root.right=getBinaryTree(pre.slice(i+1),ino.slice(i+1));
+						break;
+					}
+				}
+				return root;
+			}
+			
+			function getPostorder(pre,ino){
+				const binaryTree = getBinaryTree(preorder, inorder);
+				let post=[];
+				postorder(binaryTree);
+				function postorder(btree){
+					if(!btree){
+						return;
+					}
+					postorder(btree.left);
+					postorder(btree.right);
+					post.push(btree.value);
+				}
+				return post;
+			}
+			/* var obj={
+				value:'A',
+				left:{
+					value:'B',
+					left:{
+						value:'D',
+						left:{
+							value:'H'
+						},
+						right:{
+							value:'I'
+						}
+					},
+					right:{
+						value:'E'
+					}
+				},
+				right:{
+					value:"C",
+					left:{
+						value:'F',
+					},
+					right:{
+						value:'G'
+					}
+				}
+			} */
+		</script>
+	</body>
+</html>

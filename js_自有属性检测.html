@@ -1,0 +1,16 @@
+<html>
+	<head></head>
+	<body>
+		<script>
+			/* =========================== */
+			console.log('==============自有属性检测 prototype===========');
+			var a=function(){
+				
+			}
+			a.prototype.hasd='sdsf';
+			let myPro = new a();
+			console.log(myPro)
+			console.log(myPro.hasOwnProperty('hasd'))
+		</script>
+	</body>
+</html>

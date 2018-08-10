@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <script>
+        //prototype 是函数的属性 
+        //__proto__ 是对象的属性 构造器的原型
+        //__proto__==constructor.prototype
+
+        function Parent() {
+
+        }
+        var a = new Parent(); //a 只有 __proto__属性 
+
+        var obj = {};
+        var fun = function(){};
+        console.log(obj.prototype); //undefined
+        console.log(obj.__proto__); //{constructor:function Object()...
+		
+		console.log(fun)
+		console.log(fun.__proto__); //function(){native code}
+		console.log(fun.__proto__==fun.prototype.constructor.__proto__) //true
+		console.log(fun.prototype); //{constructor:f()...
+		
+		
+		console.log('-----测试原型指向-----')
+		
+		
+		/*1、字面量方式*/
+		var a = {};
+		console.log(a.__proto__);  //Object {}
+
+		console.log(a.__proto__ === a.constructor.prototype); //true
+		
+		//构造哦器方式
+		var A=function(){}
+		var a=new A(); //object
+		console.log(a.constructor===A,'a.constructor===A')
+		console.log(a.__proto__===A.prototype)// true;
+		//object._proto===function Object(){}.prototype;
+		
+		
+		//Object.create
+		var a1={}
+		var a2=Object.create(a1)
+		console.log(a2.__proto__===a1)
+		//
+		
+		//原型链解释
+		
+		/* 由于__proto__是任何对象都有的属性，js里面 万物皆对象，所以会形成一条__proto__连起来的链条，递归访问__proto__
+		必会到头就是null. */
+		/* 当js引擎查找对象的属性时，先查找对象本身是否存在属性，如果不存在，会在原型链上查找，但不会查找自身的prototype */
+		var B=function(){
+			this.lab='123s'
+		}
+		var b=new B();
+		
+		console.log(b.__proto__,'b.__proto__');
+		console.log(b.__proto__.__proto__,'b.__proto__.__proto__'); //Object {}（即构造器function Object 的原型对象）
+		console.log(b.__proto__.__proto__.__proto__,'b.__proto__.__proto__.__proto__'); //null
+		// 
+		console.log(b.__proto__===b.constructor.prototype)
+		
+    </script>
+</body>
+
+</html>
